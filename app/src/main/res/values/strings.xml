@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Attendance Tracker</string>
+    <string name="mark_attendance">Mark Attendance</string>
+    <string name="class_comp_100">Class: Comp 100</string>
+    <string name="date_01_03_2023">Date: 01/03/2023</string>
+    <string name="attendance_tracker">Attendance Tracker</string>
+    <string name="good_morning">Good morning!</string>
+    <string name="today_s_schedule">Today\'s Schedule</string>
+    <string name="comp_100_9_00_am">Comp 100 (9:00 AM - 10:00 AM)\nComp 200 (11:00 AM - 12:00 PM)</string>
+    <string name="attendance_summary">Attendance Summary</string>
+    <string name="comp_100">Comp 100</string>
+    <string name="_100">100%</string>
+    <string name="comp_200">Comp 200</string>
+</resources>
