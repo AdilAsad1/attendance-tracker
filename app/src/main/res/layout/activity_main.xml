@@ -21,8 +21,6 @@
             android:textColor="@color/black"
             android:textSize="24sp" />
 
-
-
     </LinearLayout>
 
     <!-- Welcome Message -->
