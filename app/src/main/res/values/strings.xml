@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">LionCheckin</string>
+    <string name="attendance_tracker" />
+    <string name="good_morning" />
+    <string name="today_s_schedule" />
+    <string name="comp_100_9_00_am" />
+    <string name="mark_attendance" />
+    <string name="attendance_summary" />
+    <string name="comp_100" />
+    <string name="_100" />
+    <string name="comp_200" />
+    <string name="date_01_03_2023" />
+    <string name="class_comp_100" />
+</resources>
