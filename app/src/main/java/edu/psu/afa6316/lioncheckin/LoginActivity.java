@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view){
                 System.out.println("Im am here");
                 Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, AddClassActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

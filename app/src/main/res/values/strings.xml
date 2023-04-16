@@ -14,7 +14,7 @@
 
     <string name="loginPage_Title">Login Page</string>
     <string name="button_login">Login</string>
-
+    <string name="addClassFloatingButton">Add Class</string>
     <string name="toolbar_add_class" >Create Class</string>
     <string name="textview_add_class">Create Class</string>
     <string name="add_class_comment">Create new class to manage daily attendance and report them. Add students in the next step</string>
