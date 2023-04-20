@@ -25,6 +25,9 @@
     <string name="add_student_cancelButton">Cancel</string>
     <string name="add_student_addButton">Add</string>
 
+    <string name="signup_Title">Sign Up</string>
+    <string name="button_signup">Sign Up</string>
+
 
 
     <string name="loginPage_Title">Login Page</string>
