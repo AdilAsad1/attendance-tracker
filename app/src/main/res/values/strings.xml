@@ -12,6 +12,21 @@
     <string name="date_01_03_2023" />
     <string name="class_comp_100" />
 
+
+    <string name="class_details_classname">Class Name</string>
+    <string name="add_students_button">Add students</string>
+    <string name="open_reports_button">Open Reports</string>
+    <string name="textview_quick_attendance">Quick Attendance</string>
+    <string name="class_details_submitButton">Submit</string>
+
+    <string name="textView_add_student">Add Student</string>
+    <string name="add_student_studentName">Student Name</string>
+    <string name="add_student_studentID">Student ID</string>
+    <string name="add_student_cancelButton">Cancel</string>
+    <string name="add_student_addButton">Add</string>
+
+
+
     <string name="loginPage_Title">Login Page</string>
     <string name="button_login">Login</string>
     <string name="addClassFloatingButton">Add Class</string>
