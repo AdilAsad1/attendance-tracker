@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "222116813143",
+    "project_id": "lioncheckin-68c55",
+    "storage_bucket": "lioncheckin-68c55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222116813143:android:1e0edfeff960536c2a4612",
+        "android_client_info": {
+          "package_name": "edu.psu.afa6316.lioncheckin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222116813143-h4si3ga78056kba7kod09q611079db54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1eS8tvKKupg0ZS2RR_ksn8hD_Nio425U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222116813143-h4si3ga78056kba7kod09q611079db54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

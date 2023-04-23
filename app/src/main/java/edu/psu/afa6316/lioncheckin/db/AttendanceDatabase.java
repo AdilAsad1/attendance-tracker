@@ -1,4 +1,4 @@
-package edu.psu.afa6316.lioncheckin;
+package edu.psu.afa6316.lioncheckin.db;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package edu.psu.afa6316.lioncheckin;
+package edu.psu.afa6316.lioncheckin.db;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -7,6 +7,8 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
+
+import edu.psu.afa6316.lioncheckin.db.Class;
 
 @Dao
 public interface ClassDao {
