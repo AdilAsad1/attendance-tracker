@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="general_category"
+        android:title="@string/general_settings">
+
+        <ListPreference
+            android:key="default_attendance"
+            android:title="@string/default_attendance"
+            android:entries="@array/attendance_options"
+            android:entryValues="@array/attendance_option_values"
+            android:defaultValue="0"
+            android:summary="%s"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>
