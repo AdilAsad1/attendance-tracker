@@ -24,6 +24,15 @@ public class ClassDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button settingsButton = findViewById(R.id.settings_button);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ClassDetailsActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

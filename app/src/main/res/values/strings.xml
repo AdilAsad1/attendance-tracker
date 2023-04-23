@@ -36,4 +36,6 @@
     <string name="toolbar_add_class" >Create Class</string>
     <string name="textview_add_class">Create Class</string>
     <string name="add_class_comment">Create new class to manage daily attendance and report them. Add students in the next step</string>
+    <string name="general_settings" />
+    <string name="default_attendance" />
 </resources>
