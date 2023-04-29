@@ -76,7 +76,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:background="@android:color/background_light"
         app:layout_constraintTop_toBottomOf="@id/textview_quick_attendance"
+        app:layout_constraintBottom_toTopOf="@id/class_details_submitButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:listitem="@layout/student_list_item"
         />
 
 

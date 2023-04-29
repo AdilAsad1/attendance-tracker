@@ -1,38 +1,108 @@
 package edu.psu.afa6316.lioncheckin;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
+import edu.psu.afa6316.lioncheckin.db.Student;
+import edu.psu.afa6316.lioncheckin.db.StudentViewModel;
 
 public class ClassDetailsActivity extends AppCompatActivity {
-
+    private StudentViewModel studentViewModel;
+    private int class_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.class_details);
+        class_id = getIntent().getIntExtra("class_id",-1);
+
+        RecyclerView recyclerView = findViewById(R.id.class_details_students_list);
+        StudentListAdapter adapter = new StudentListAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        studentViewModel.setClassid(class_id);
+        studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
+        studentViewModel.getAll().observe(this,adapter::setStudents);
 
         Button add_students_button = findViewById(R.id.add_students_button);
 
-        add_students_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ClassDetailsActivity.this, AddStudentActivity.class);
-                startActivity(intent);
-            }
+        add_students_button.setOnClickListener(view -> {
+            Intent intent = new Intent(ClassDetailsActivity.this, AddStudentActivity.class);
+            intent.putExtra("class_id", class_id);
+            startActivity(intent);
         });
 
         Button settingsButton = findViewById(R.id.settings_button);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ClassDetailsActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
+        settingsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ClassDetailsActivity.this, SettingsActivity.class);
+            startActivity(intent);
         });
+    }
+
+    public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.StudentViewHolder>{
+
+        class StudentViewHolder extends RecyclerView.ViewHolder{
+            private final TextView studentNameView;
+            private Student student;
+
+            private StudentViewHolder(View itemView){
+                super(itemView);
+                studentNameView = itemView.findViewById(R.id.student_list);
+
+
+
+            }
+        }
+        private final LayoutInflater layoutInflater;
+        private List<Student> students;
+
+        StudentListAdapter(Context context){
+            layoutInflater = LayoutInflater.from(context);
+        }
+
+        @NonNull
+        @Override
+        public StudentViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+            View itemView = layoutInflater.inflate(R.layout.student_list_item,parent, false);
+            return new StudentViewHolder(itemView);
+        }
+        @Override
+        public void onBindViewHolder(StudentViewHolder holder, int position){
+            if (students != null){
+                Student current = students.get(position);
+                holder.student = current;
+                holder.studentNameView.setText(current.name);
+            }
+            else{
+                holder.studentNameView.setText("...initializing...");
+            }
+        }
+        @Override
+        public int getItemCount() {
+            if (students != null) {
+                return students.size();
+            }
+            else return 0;
+        }
+
+        void setStudents(List<Student> students){
+            this.students = students;
+            notifyDataSetChanged();
+        }
+
     }
 
 }

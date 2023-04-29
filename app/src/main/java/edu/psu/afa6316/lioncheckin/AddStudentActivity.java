@@ -29,27 +29,21 @@ public class AddStudentActivity extends AppCompatActivity {
         EditText studentIdEditText = findViewById(R.id.add_student_studentID);
 
 
-        addStudentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String studentName = studentNameEditText.getText().toString();
-                String studentId = studentIdEditText.getText().toString();
+        addStudentButton.setOnClickListener(view -> {
+            String studentName = studentNameEditText.getText().toString();
+            String studentId = studentIdEditText.getText().toString();
 
-                Student student = new Student(studentName,0,class_id);
-                AttendanceDatabase.insertStudent(student);
+            Student student = new Student(studentName,0,class_id);
+            AttendanceDatabase.insertStudent(student);
 
-                Toast.makeText(AddStudentActivity.this, "Student successfully added", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(AddStudentActivity.this, ClassDetailsActivity.class);
-                startActivity(intent);
-            }
+            Toast.makeText(AddStudentActivity.this, "Student successfully added", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(AddStudentActivity.this, ClassDetailsActivity.class);
+            startActivity(intent);
         });
 
-        cancelButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(AddStudentActivity.this, ClassDetailsActivity.class);
-                startActivity(intent);
-            }
+        cancelButton.setOnClickListener(view -> {
+            Intent intent = new Intent(AddStudentActivity.this, ClassDetailsActivity.class);
+            startActivity(intent);
         });
     }
 }
