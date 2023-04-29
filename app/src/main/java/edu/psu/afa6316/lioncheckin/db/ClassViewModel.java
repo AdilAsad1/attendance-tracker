@@ -2,26 +2,22 @@ package edu.psu.afa6316.lioncheckin.db;
 
 import android.app.Application;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class ClassViewModel extends AndroidViewModel {
 
     private LiveData<List<Class>> classes;
-    private ClassDao classDao;
 
     public ClassViewModel(Application application) {
         super(application);
-        AttendanceDatabase database = AttendanceDatabase.getInstance(application);
-        classDao = database.classDao();
-        classes = classDao.getAllClasses();
+        classes = AttendanceDatabase.getDatabase(getApplication()).classDao().getAllClasses();
+
     }
 
-    public LiveData<List<Class>> getAllClasses() {
+    public LiveData<List<Class>> getAll() {
         return classes;
     }
 }

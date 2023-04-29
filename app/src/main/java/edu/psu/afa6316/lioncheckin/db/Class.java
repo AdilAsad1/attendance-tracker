@@ -22,24 +22,4 @@ public class Class {
     @ColumnInfo(name = "name")
     public String className;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public String getClassSubject() {
-        return classSubject;
-    }
-
-    public void setClassSubject(String classSubject) {
-        this.classSubject = classSubject;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
-    }
 }
