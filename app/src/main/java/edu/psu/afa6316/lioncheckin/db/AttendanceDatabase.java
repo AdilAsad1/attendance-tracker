@@ -14,7 +14,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 @Database(entities = {Class.class, Student.class}, version = 1, exportSchema = false)
 public abstract class AttendanceDatabase extends RoomDatabase {
-    public interface classListener{
+    public interface ClassListener {
         void onClassReturned(Class class_);
     }
 
@@ -56,7 +56,7 @@ public abstract class AttendanceDatabase extends RoomDatabase {
         new Thread(()-> INSTANCE.studentDao().deleteStudent(studentId)).start();
     }
 
-    public static void getClass(final classListener listener){
+    public static void getClasses(final ClassListener listener){
         Handler handler = new Handler(Looper.getMainLooper()){
             @Override
             public void handleMessage(Message msg){
