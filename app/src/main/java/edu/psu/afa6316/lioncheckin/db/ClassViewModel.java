@@ -16,6 +16,8 @@ public class ClassViewModel extends AndroidViewModel {
         classes = AttendanceDatabase.getDatabase(getApplication()).classDao().getAllClasses();
     }
 
+
+
     public LiveData<List<Class>> getAll() {
         return classes;
     }

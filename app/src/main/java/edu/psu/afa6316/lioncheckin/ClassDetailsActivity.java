@@ -3,10 +3,12 @@ package edu.psu.afa6316.lioncheckin;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,25 +19,34 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.psu.afa6316.lioncheckin.db.AttendanceDatabase;
 import edu.psu.afa6316.lioncheckin.db.Student;
 import edu.psu.afa6316.lioncheckin.db.StudentViewModel;
 
 public class ClassDetailsActivity extends AppCompatActivity {
     private StudentViewModel studentViewModel;
     private int class_id;
+    private String class_name;
+    private TextView classNameTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.class_details);
+        classNameTextView = findViewById(R.id.class_details_classname);
         class_id = getIntent().getIntExtra("class_id",-1);
+        class_name = getIntent().getStringExtra("class_name");
+        Log.d("Here1", "setClassId: " + class_name);
 
+        classNameTextView.setText(class_name);
         RecyclerView recyclerView = findViewById(R.id.class_details_students_list);
         StudentListAdapter adapter = new StudentListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        studentViewModel.setClassid(class_id);
+//        studentViewModel.setClassId(class_id);
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
         studentViewModel.getAll().observe(this,adapter::setStudents);
+
+
 
         Button add_students_button = findViewById(R.id.add_students_button);
 
@@ -50,7 +61,34 @@ public class ClassDetailsActivity extends AppCompatActivity {
             Intent intent = new Intent(ClassDetailsActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
+
+        Button submitButton = findViewById(R.id.class_details_submitButton);
+        submitButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ClassDetailsActivity.this, MainActivity.class );
+            startActivity(intent);
+        });
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        StudentListAdapter adapter = new StudentListAdapter(this);
+        studentViewModel.getAll().observe(this, adapter::setStudents);
+    }
+
+//    public void displaySetup(int class_id) {
+//        AttendanceDatabase.getStudents(class_id, student -> {
+//            Bundle args = new Bundle();
+//            args.putInt("id", student.studentId);
+//            args.putString("name", student.name);
+//
+//        });
+//    }
 
     public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.StudentViewHolder>{
 
@@ -61,7 +99,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
             private StudentViewHolder(View itemView){
                 super(itemView);
                 studentNameView = itemView.findViewById(R.id.student_list);
-
+//                itemView.setOnClickListener(view -> displaySetup(class_id));
 
 
             }

@@ -18,6 +18,10 @@ public abstract class AttendanceDatabase extends RoomDatabase {
         void onClassReturned(Class class_);
     }
 
+    public interface StudentListener {
+        void onStudentReturned(Student student);
+    }
+
     public abstract ClassDao classDao();
     public abstract StudentDao studentDao();
 
@@ -37,8 +41,15 @@ public abstract class AttendanceDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
+            createClassTable();
         }
     };
+
+    private static void createClassTable() {
+        for (int i = 0; i < DefaultContent.className.length; i++) {
+            insertClass(new Class(0, DefaultContent.className[i], DefaultContent.subjectName[i]));
+        }
+    }
 
     public static void insertClass(Class class_){
         new Thread(() -> INSTANCE.classDao().insertClass(class_)).start();
@@ -56,19 +67,7 @@ public abstract class AttendanceDatabase extends RoomDatabase {
         new Thread(()-> INSTANCE.studentDao().deleteStudent(studentId)).start();
     }
 
-    public static void getClasses(final ClassListener listener){
-        Handler handler = new Handler(Looper.getMainLooper()){
-            @Override
-            public void handleMessage(Message msg){
-                super.handleMessage(msg);
-                listener.onClassReturned((Class) msg.obj);
-            }
-        };
-        new Thread(() -> {
-            Message msg = handler.obtainMessage();
-            msg.obj = INSTANCE.classDao().getAllClasses();
-            handler.sendMessage(msg);
-        }).start();
-    }
 
 }
+
+
