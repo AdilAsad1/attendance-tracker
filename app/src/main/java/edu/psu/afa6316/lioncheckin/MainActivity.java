@@ -18,7 +18,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-import edu.psu.afa6316.lioncheckin.db.AttendanceDatabase;
 import edu.psu.afa6316.lioncheckin.db.Class;
 import edu.psu.afa6316.lioncheckin.db.ClassViewModel;
 
@@ -58,16 +57,6 @@ public class MainActivity extends AppCompatActivity {
         ClassListAdapter adapter = new ClassListAdapter(this);
         classViewModel.getAll().observe(this, adapter::setClasses);
     }
-
-//    public void displaySetup() {
-//        AttendanceDatabase.getClasses(class_ -> {
-//            Bundle args = new Bundle();
-//            args.putInt("id", class_.id);
-//            args.putString("subject", class_.classSubject);
-//            args.putString("name", class_.className);
-//
-//        });
-//    }
 
 
 

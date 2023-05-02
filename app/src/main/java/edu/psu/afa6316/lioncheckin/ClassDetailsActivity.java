@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import edu.psu.afa6316.lioncheckin.db.AttendanceDatabase;
 import edu.psu.afa6316.lioncheckin.db.Student;
 import edu.psu.afa6316.lioncheckin.db.StudentViewModel;
 
@@ -81,24 +80,22 @@ public class ClassDetailsActivity extends AppCompatActivity {
         studentViewModel.getAll().observe(this, adapter::setStudents);
     }
 
-//    public void displaySetup(int class_id) {
-//        AttendanceDatabase.getStudents(class_id, student -> {
-//            Bundle args = new Bundle();
-//            args.putInt("id", student.studentId);
-//            args.putString("name", student.name);
-//
-//        });
-//    }
+
 
     public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.StudentViewHolder>{
 
+
+
+
         class StudentViewHolder extends RecyclerView.ViewHolder{
             private final TextView studentNameView;
+            private final RadioGroup studentAttendanceRadioButton;
             private Student student;
 
             private StudentViewHolder(View itemView){
                 super(itemView);
                 studentNameView = itemView.findViewById(R.id.student_list);
+                studentAttendanceRadioButton = itemView.findViewById(R.id.student_attendance_radio);
 //                itemView.setOnClickListener(view -> displaySetup(class_id));
 
 
@@ -107,9 +104,12 @@ public class ClassDetailsActivity extends AppCompatActivity {
         private final LayoutInflater layoutInflater;
         private List<Student> students;
 
+
+
         StudentListAdapter(Context context){
             layoutInflater = LayoutInflater.from(context);
         }
+
 
         @NonNull
         @Override
@@ -123,6 +123,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
                 Student current = students.get(position);
                 holder.student = current;
                 holder.studentNameView.setText(current.name);
+                holder.studentAttendanceRadioButton.check(current.attendance ? R.id.presentButton : R.id.absentButton);
             }
             else{
                 holder.studentNameView.setText("...initializing...");

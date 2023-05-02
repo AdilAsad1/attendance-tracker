@@ -22,4 +22,7 @@ public class Student {
     @ColumnInfo(name = "class_id")
     public int classId;
 
+    @ColumnInfo(name = "attendance")
+    public boolean attendance;
+
 }
