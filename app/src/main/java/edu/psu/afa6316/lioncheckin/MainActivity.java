@@ -105,11 +105,13 @@ public class MainActivity extends AppCompatActivity {
            if (classes != null){
            Class current = classes.get(position);
            holder.class_ = current;
-//           holder.classNameView.setText(current.className);
            holder.classSubjectView.setText(current.classSubject);
-       } else {
+           holder.classNameView.setText(current.className);
+
+           } else {
            // Covers the case of data not being ready yet.
            holder.classSubjectView.setText(R.string.initializing);
+           holder.classNameView.setText("...initializing...");
        }
        }
 

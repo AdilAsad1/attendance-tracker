@@ -28,6 +28,12 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_page);
 
+        if (savedInstanceState != null) {
+            signUpPage_username.setText(savedInstanceState.getString("username"));
+            signUpPage_password.setText(savedInstanceState.getString("password"));
+            signUpPage_confirmPassword.setText(savedInstanceState.getString("confirmPassword"));
+        }
+
         Button signupButton = findViewById(R.id.button_gotoSignUp);
 
         signUpPage_username = findViewById(R.id.signup_username);
@@ -81,5 +87,13 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("username", signUpPage_username.getText().toString());
+        outState.putString("password", signUpPage_password.getText().toString());
+        outState.putString("confirmPassword", signUpPage_confirmPassword.getText().toString());
     }
 }

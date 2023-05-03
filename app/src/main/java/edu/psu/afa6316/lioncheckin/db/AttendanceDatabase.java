@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Handler;
 
+
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
@@ -12,7 +13,9 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
-@Database(entities = {Class.class, Student.class}, version = 1, exportSchema = false)
+
+
+@Database(entities = {Class.class, Student.class, Attendance.class}, version = 1, exportSchema = false)
 public abstract class AttendanceDatabase extends RoomDatabase {
     public interface ClassListener {
         void onClassReturned(Class class_);
@@ -24,6 +27,7 @@ public abstract class AttendanceDatabase extends RoomDatabase {
 
     public abstract ClassDao classDao();
     public abstract StudentDao studentDao();
+    public abstract AttendanceDao attendanceDao();
 
     private static AttendanceDatabase INSTANCE;
 
@@ -66,6 +70,11 @@ public abstract class AttendanceDatabase extends RoomDatabase {
     public static void deleteStudent(int studentId){
         new Thread(()-> INSTANCE.studentDao().deleteStudent(studentId)).start();
     }
+
+    public static void insertAttendance(Attendance attendance){
+        new Thread(() -> INSTANCE.attendanceDao().insertAttendance(attendance)).start();
+    }
+
 
 
 }

@@ -26,7 +26,7 @@
         android:padding="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:hint="User Name"
+        android:hint="Email"
         app:layout_constraintTop_toBottomOf="@id/loginPage_Title"
         app:layout_constraintStart_toStartOf="@id/loginPage_Title"/>
 

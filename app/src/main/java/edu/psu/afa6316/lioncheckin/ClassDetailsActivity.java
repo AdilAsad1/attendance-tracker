@@ -3,7 +3,6 @@ package edu.psu.afa6316.lioncheckin;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +30,14 @@ public class ClassDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.class_details);
+
+        if (savedInstanceState != null) {
+            class_id = savedInstanceState.getInt("class_id");
+            class_name = savedInstanceState.getString("class_name");
+        }
         classNameTextView = findViewById(R.id.class_details_classname);
         class_id = getIntent().getIntExtra("class_id",-1);
         class_name = getIntent().getStringExtra("class_name");
-        Log.d("Here1", "setClassId: " + class_name);
 
         classNameTextView.setText(class_name);
         RecyclerView recyclerView = findViewById(R.id.class_details_students_list);
@@ -71,6 +74,8 @@ public class ClassDetailsActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putString("class_name",class_name);
+        outState.putInt("class_id",class_id);
     }
 
     @Override
@@ -123,7 +128,7 @@ public class ClassDetailsActivity extends AppCompatActivity {
                 Student current = students.get(position);
                 holder.student = current;
                 holder.studentNameView.setText(current.name);
-                holder.studentAttendanceRadioButton.check(current.attendance ? R.id.presentButton : R.id.absentButton);
+                holder.studentAttendanceRadioButton.check(current.attendance ?  R.id.absentButton : R.id.presentButton);
             }
             else{
                 holder.studentNameView.setText("...initializing...");
